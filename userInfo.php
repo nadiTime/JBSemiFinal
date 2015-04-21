@@ -4,6 +4,9 @@
 	-if there is authentication:
 		a. user details in the field (ajax)
 		b. display the navigation menu (ajax)
+			option to deactivate account
+				wont show on friends.php and friendships.php
+				no way to get the user profile from the url
 2. use HTML5 to build the fields (we'er going to use ajax so no need for 'form'):
 	email
 	password
@@ -21,4 +24,12 @@
 	re-enter must match password
 4. re-enter password will not be sent to server
 	email should be unique (ajax)
+5. show server validation errors/success (ajax)
+6. if all validation passes:
+	on registration:
+		insert user details in user table
+		login user and redirect to index.php
+	on updating details:
+		update user details
+		redirect to index.php
  -->
