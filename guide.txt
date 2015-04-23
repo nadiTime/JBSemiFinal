@@ -1,0 +1,12 @@
+user goes to index.php ->						
+php in head check if there is session ->			php in head check if came from friends.php or friendships.php and show 
+	friend info.
+
+there isnt -> goes to login.php  -> complete -> start session and goes to index.php.OR goes to userInfo.php
+there is -> stay on index.php and shows user info.
+
+user goes to userInfo.php -> check if there is session
+there isnt -> show registration form.
+there is -> show user details in the form.
+
+
