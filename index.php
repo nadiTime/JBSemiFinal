@@ -17,12 +17,14 @@
  -->
 
  <?php
-
 	require_once('templates/head.html');
  ?>
- 		<script type="text/javascript" src="js/index.js"></script>
- 	</head>
- 	<body>
+ 	<script type="text/javascript" src="js/index.js"></script>
+
+ <?php
+ 	require_once('templates/header.html');
+	require_once('templates/navbar.html');
+ ?>
  		Hello World
 
 
