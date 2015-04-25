@@ -17,4 +17,34 @@ php check where came from if friendstuff -> saves data on server
 
 	
 
-mysql -> 
+mysql -> users
+			id:unique
+			nickname
+			email:unique
+			birthdate
+			password
+			about myself
+			image
+			active:0/1
+
+		posts
+			id
+			user_id
+			post
+
+		profile picture
+			id
+			user_id
+			image path
+
+		secret
+			id
+			user_id
+			image path
+			note
+
+		requests
+			id
+			sender_id
+			reciever_id
+			status 0/1 -> on approvel is deleted 0 declined, 1 still waiting
