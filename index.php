@@ -15,3 +15,9 @@
 4. user can write new posts
 
  -->
+
+ <?php
+
+ ?>
+
+ 
