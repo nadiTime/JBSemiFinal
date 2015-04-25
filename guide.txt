@@ -24,7 +24,7 @@ mysql -> users
 			birthdate
 			password
 			about myself
-			image
+			image path
 			active:0/1
 
 		posts
@@ -32,10 +32,7 @@ mysql -> users
 			user_id
 			post
 
-		profile picture
-			id
-			user_id
-			image path
+
 
 		secret
 			id
