@@ -1,6 +1,9 @@
 <!-- 
 here will be the global session variables:
 	1. loged in
+	2. which page was last,
+	3. which friend being pressed
+	
 
 
 a list of all what the server need to GET:
