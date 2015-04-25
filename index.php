@@ -18,6 +18,14 @@
 
  <?php
 
+	require_once('templates/head.html');
  ?>
+ 		<script type="text/javascript" src="js/index.js"></script>
+ 	</head>
+ 	<body>
+ 		Hello World
 
- 
+
+<?php
+	require_once('templates/footer.html');
+?>

@@ -33,3 +33,16 @@
 		update user details
 		redirect to index.php
  -->
+ <?php
+
+	require_once('templates/head.html');
+ ?>
+ 		<script type="text/javascript" src="js/userInfo.js"></script>
+ 	</head>
+ 	<body>
+
+
+
+<?php
+	require_once('templates/footer.html');
+?>

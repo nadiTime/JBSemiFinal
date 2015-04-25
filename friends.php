@@ -30,5 +30,18 @@
 			-if the user that was declined enters our profile again he still see the message "request sent, date"
 		-if the user is a friend:
 			secret data is displayd
-			unfriend option button
-			
+			unfriend option button -->
+
+<?php
+
+	require_once('templates/head.html');
+ ?>
+ 		<script type="text/javascript" src="js/friends.js"></script>
+ 	</head>
+ 	<body>
+
+
+
+<?php
+	require_once('templates/footer.html');
+?>
