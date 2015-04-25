@@ -1,8 +1,23 @@
-<!-- 
+<?php
+	$userId = $_SESSION["id"];
+	$lastPage = none;
+	if(isset($_POST['lastPage'])){
+		$lastPage = $_POST['lastPage'];
+	};
+
+	$global = {'userId':$userId,'lastPage':$lastPage};
+
+	if(isset($_GET['lastPage'])&&isset($_GET['userId'])){
+		echo $global;
+	}
+
+
+
+/*<!-- 
 here will be the global session variables:
 	1. loged in
 	2. which page was last,
-	3. which friend being pressed
+
 	
 
 
@@ -29,4 +44,4 @@ user details
 all friends
 my friends
 friend/not friend details
- -->
+ -->*/

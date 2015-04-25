@@ -40,7 +40,7 @@
  	</head>
  	<body>
 
-
+ 		friends page
 
 <?php
 	require_once('templates/footer.html');

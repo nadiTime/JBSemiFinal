@@ -44,4 +44,4 @@ mysql -> users
 			id
 			sender_id
 			reciever_id
-			status 0/1 -> on approvel is deleted 0 declined, 1 still waiting
+			status 0/1/2 -> on approvel is deleted 0 declined, 1 accepted, 2 waiting

@@ -8,15 +8,19 @@
 	user posts (message+date)
 3. Navigation menu:
 	home -> index.php
-	find friends -> friends.php
-	my friends -> friends.php
+	find friends -> frids.php
 	relatiionships ->relationships.php
 	settings -> userInfo.php
 4. user can write new posts
 
  -->
-
+ends.php
+	my friends -> frien
  <?php
+ 	if(session_status() == PHP_SESSION_NONE) {
+ 		header('Location:login.php');
+ 	}
+ 	
 	require_once('templates/head.html');
  ?>
  	<script type="text/javascript" src="js/index.js"></script>

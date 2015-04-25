@@ -30,7 +30,7 @@ this page shows three lists side by side
  	</head>
  	<body>
 
-
+ 		relationships page
 
 <?php
 	require_once('templates/footer.html');
