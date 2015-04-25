@@ -25,7 +25,9 @@
  	require_once('templates/header.html');
 	require_once('templates/navbar.html');
  ?>
- 		Hello World
+ 	<div id="info">info div</div>
+ 	<div id="request">requests</div>
+ 	<div id="posts">posts here</div>
 
 
 <?php
