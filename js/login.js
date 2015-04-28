@@ -1,0 +1,5 @@
+/*
+	on login pressed ajax to global.php
+	if succes navigate to index.php
+
+*/

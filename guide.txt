@@ -22,10 +22,14 @@ mysql -> users
 			nickname
 			email:unique
 			birthdate
-			password
 			about myself
 			image path
-			active:0/1
+				active:0/1
+
+		passwords
+			user_id
+			email
+			password
 
 		posts
 			id

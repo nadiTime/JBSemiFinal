@@ -1,0 +1,11 @@
+@import 'vars';
+html{
+	font-family: Arial;
+}
+header{
+	text-align: center;
+	padding: 0.2em;
+	height: auto;
+	font-size: 3em;	
+	background-color: $header-color;
+}

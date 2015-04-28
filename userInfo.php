@@ -34,13 +34,33 @@
 		redirect to index.php
  -->
  <?php
-
 	require_once('templates/head.html');
+	$filename = basename(preg_replace('/\.php$/', '', __FILE__));
+	echo "<script src='js/".$filename.".js'></script>";
+ 	require_once('templates/header.html');
  ?>
- 		<script type="text/javascript" src="js/userInfo.js"></script>
- 	</head>
- 	<body>
- 		user info page
+ 	<section id="body">
+ 		<h1>userInfotmp</h1>
+
+ 		<div id="userInfo">
+ 			<form action="" method="post"> 
+	 			<label for="user_email">email</label> 
+	 			<input type="email" name="user_email" required autofocus/>
+	 			<label for="user_password">password</label>
+	 			<input type="password" name="user_password" required/>
+	 			<label for="re-enter_password">re-enater password</label>
+	 			<input type="password" name="re-enter_password" required />
+	 			<label for="user_nickname">nickname</label>
+	 			<input type="text" name="user_nickname" required />
+	 			<label for="user_birthdate">birth date</label>
+	 			<input type="date" name="user_birthdate" required />
+	 			<textarea placeholder="about myself" name="user_about"></textarea> 
+	 			<div id="update-register">update-register</div>
+ 			</form>
+
+ 		</div>
+
+ 	</section>
 
 
 <?php

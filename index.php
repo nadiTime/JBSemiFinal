@@ -1,26 +1,10 @@
-<!-- 
-1. If not logged in redirect to login.php
-2. Display user data:
-	personal info
-	profile picture
-	secret picture
-	secret note
-	user posts (message+date)
-3. Navigation menu:
-	home -> index.php
-	find friends -> frids.php
-	relatiionships ->relationships.php
-	settings -> userInfo.php
-4. user can write new posts
-
- -->
-ends.php
-	my friends -> frien
  <?php
+ session_start(); //temp
+
  	if(session_status() == PHP_SESSION_NONE) {
  		header('Location:login.php');
  	}
- 	
+
 	require_once('templates/head.html');
  ?>
  	<script type="text/javascript" src="js/index.js"></script>
@@ -29,9 +13,26 @@ ends.php
  	require_once('templates/header.html');
 	require_once('templates/navbar.html');
  ?>
- 	<div id="info">info div</div>
- 	<div id="request">requests</div>
- 	<div id="posts">posts here</div>
+ 	<section id="body">
+	 	<div id="person">
+		 	<div id="profile-picture">	
+		 		<img src="api/pics/profile/user.jpg"/>
+		 	</div>
+			<div id="user-details">
+				<p name="name">user name</p>
+				<p name="birthdate">birthdate</p>
+				<p name="email">nadavcn@gmail.com</p>
+			</div>
+
+			<div id="secret-data">secret data goes here</div>
+		</div>
+		<div id="posts">
+			<textarea placeholder="Whats on yur mind?"></textarea>
+			<p>example post</p>
+		</div>
+	 	<div id="request">requests</div>
+	 	
+	 </section>
 
 
 <?php

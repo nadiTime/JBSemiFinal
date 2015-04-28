@@ -1,17 +1,12 @@
 <?php
-	$userId = $_SESSION["id"];
-	$lastPage = none;
-	if(isset($_POST['lastPage'])){
-		$lastPage = $_POST['lastPage'];
-	};
+	$userId = $_SESSION["id"];    //saves session user id
+	$lastPageFriendId = $_SESSION['lastPageFriendId']; //save the last friend pressed id or 0 if other page
 
-	$global = {'userId':$userId,'lastPage':$lastPage};
-
-	if(isset($_GET['lastPage'])&&isset($_GET['userId'])){
-		echo $global;
-	}
-
-
+	/*
+		post[email]post[password] check, if correct set session to user id
+		echo 1
+		
+	*/
 
 /*<!-- 
 here will be the global session variables:
