@@ -7,8 +7,8 @@ get [node.js](https://nodejs.org/download/)
 
 than run:
 
-```npm update      
-npm install```
+```npm update```
+```npm install```
 
 Ruby Installer(for windows)
 
