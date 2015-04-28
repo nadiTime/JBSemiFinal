@@ -1,6 +1,6 @@
 @import 'vars';
 html{
-	font-family: Arial;
+	font-family: 'Open Sans', sans-serif;
 }
 header{
 	text-align: center;
@@ -9,3 +9,43 @@ header{
 	font-size: 3em;	
 	background-color: $header-color;
 }
+
+nav{
+	list-style: none;
+	text-align: center;
+	width: 100%;
+	background-color: $nav-color;
+	ul{
+		margin:0;
+		padding:1em;
+		
+		li{
+			display:inline;
+			a{
+				text-decoration: none;
+				color:#0F3D23;
+				font-size: 2em;
+				margin-left: 1em;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+
+	}
+
+}
+div{
+	display: inline-block;
+}
+
+input{
+	border-radius: 0.5em;
+	padding: 0.5em 0em 0.5em 0.5em;
+	outline: none;
+	border:2px solid $nav-color;
+	&:focus{
+		border: 3px solid $header-color;
+ 	}
+}
+

@@ -11,7 +11,6 @@
 
  <?php
  	require_once('templates/header.html');
-	require_once('templates/navbar.html');
  ?>
  	<section id="body">
 	 	<div id="person">

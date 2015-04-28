@@ -41,25 +41,33 @@
  ?>
  	<section id="body">
  		<h1>userInfotmp</h1>
+ 		<div class="row">
+			<div class="12u">
+				<label for="user_email">email</label> 
+				<input type="email" name="user_email" required autofocus/>
+			</div> 
+ 			<div class="6u">	
+ 				<label for="user_password">password</label>
+ 				<input type="password" name="user_password" required/>
+			</div> 
+			<div class="6u">
+				<label for="re-enter_password">re-enater password</label>
+				<input type="password" name="re-enter_password" required />
+			</div>
+			<div class="12u">	
+				<label for="user_nickname">nickname</label>
+				<input type="text" name="user_nickname" required />
+			</div>
+			<div class="12u">
+				<label for="user_birthdate">birth date</label>
+				<input type="date" name="user_birthdate" required />
+			</div>
+			<div class="12u">
+				<textarea placeholder="about myself" name="user_about"></textarea> 
+				<div id="update-register">update-register</div>
+			</div>
 
- 		<div id="userInfo">
- 			<form action="" method="post"> 
-	 			<label for="user_email">email</label> 
-	 			<input type="email" name="user_email" required autofocus/>
-	 			<label for="user_password">password</label>
-	 			<input type="password" name="user_password" required/>
-	 			<label for="re-enter_password">re-enater password</label>
-	 			<input type="password" name="re-enter_password" required />
-	 			<label for="user_nickname">nickname</label>
-	 			<input type="text" name="user_nickname" required />
-	 			<label for="user_birthdate">birth date</label>
-	 			<input type="date" name="user_birthdate" required />
-	 			<textarea placeholder="about myself" name="user_about"></textarea> 
-	 			<div id="update-register">update-register</div>
- 			</form>
-
- 		</div>
-
+		 </div>
  	</section>
 
 
