@@ -39,7 +39,7 @@
 	echo "<script src='js/".$filename.".js'></script>";
  	require_once('templates/header.html');
  ?>
- 	<section id="body">
+ 	<section>
  		<h1>userInfotmp</h1>
  		<div class="row">
 			<div class="4u$">
@@ -57,10 +57,10 @@
 			<div class="4u$">
 				<input type="date" name="user_birthdate" required />
 			</div>
-			<div class="4u$">
+			<div class="4u">
 				<textarea placeholder="about myself" placeholder="about me" name="user_about"></textarea> 
-				<div id="update-register">update-register</div>
 			</div>
+			<div class="2u$"><button id="update-register">register</button></div>
 
 		 </div>
  	</section>

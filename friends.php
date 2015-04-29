@@ -33,15 +33,21 @@
 			unfriend option button -->
 
 <?php
-
 	require_once('templates/head.html');
+	$filename = basename(preg_replace('/\.php$/', '', __FILE__));
+	echo "<script src='js/".$filename.".js'></script>";
+ 	require_once('templates/header.html');
  ?>
- 		<script type="text/javascript" src="js/friends.js"></script>
- 	</head>
- 	<body>
-
- 		friends page
-
-<?php
-	require_once('templates/footer.html');
-?>
+  <section>
+  	<div class="row" id="filter">
+  		<div class="3u$">
+  			<h1>friends</h1>
+  		</div>
+  		<div class="3u">
+  			<label id="search-label">
+  				<i class="fa fa-search"></i>
+   		 		<input type="text" id="search_friends" placeholder="search..." />
+   		 	</label>
+  		</div>
+  	</div>
+  </section>

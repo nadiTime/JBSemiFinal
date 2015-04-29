@@ -6,16 +6,28 @@
 5. while loged in cant get to login page, redirect to index.php
  -->
 
- <?php
-
-	require_once('templates/head.html');
- ?>
- 		<script type="text/javascript" src="js/login.js"></script>
- 	</head>
- 	<body>
- 		login page
-
-
 <?php
-	require_once('templates/footer.html');
-?>
+	require_once('templates/head.html');
+	$filename = basename(preg_replace('/\.php$/', '', __FILE__));
+	echo "<script src='js/".$filename.".js'></script>";
+ 	require_once('templates/header-only.html');
+ ?>
+	<section>
+		<div class="row">
+			<div class="3u$ -4u">
+				<h1>Login</h1>
+			</div>
+			<div class="3u$ -4u">
+				<input type="email" placeholder="email">
+			</div>
+			<div class="3u -4u">
+				<input type="password" placeholder="password">
+			</div>
+			<div class="3u$ -2u">
+				<a href="userInfo.php">register here</a>
+			</div>
+			<div class="3u$ -4u">
+				<button>Go</button>
+			</div>
+		</div>
+	</section>

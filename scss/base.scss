@@ -36,7 +36,7 @@ nav{
 
 }
 section{
-	margin:0 3em 0 3em;
+	margin:1em 3em 4em 3em;
 }
 
 input,textarea{
@@ -44,9 +44,60 @@ input,textarea{
 	border-radius: 0.5em;
 	padding: 0.5em 0em 0.5em 0.5em;
 	outline: none;
-	border:0.2em solid $nav-color;
+	border:0.2em solid #550000;
 	&:focus{
 		border: 0.22em solid $header-color;
  	}
+ 	&:required:invalid{
+ 		border-color: #550000;
+ 	}
+ 	&:valid{
+ 		border-color: #2F4A9B;
+ 	}
 }
 
+/*input:required:invalid, input:focus:invalid {
+   insert your own styles for invalid form input 
+  -moz-box-shadow: none;
+}
+*/
+img{
+	width:100%;
+	height: 100%;
+	border-radius: 0.5em;
+}
+button{
+	border-radius: 0.5em;
+	width:100%;
+	height: 100%;
+	background-color:white;
+	border:0.1em solid $header-color;
+	font-size: 1em;
+	&:hover{
+		background-color:$header-color;
+		border-color: white;
+	}
+	&:focus {outline:0;}
+
+}
+a{
+	text-decoration: none;
+	color:black;
+	&:hover{
+		border-color:$nav-color;
+	}
+}
+#search-label {
+    position: relative;
+}
+
+#search-label .fa-search {
+    color: #666;
+    top: 2px;
+    left: 5px;
+    position: absolute;
+}
+
+#search_friends {
+    padding-left: 20px;
+}
