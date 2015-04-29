@@ -22,16 +22,27 @@ this page shows three lists side by side
 	5. clicking on any item from the list (exept buttons) will redirect to index.php and show the user
 	   details as metioned in friends.php
  -->
- <?php
-
-	require_once('templates/head.html');
- ?>
- 		<script type="text/javascript" src="js/relationships.js"></script>
- 	</head>
- 	<body>
-
- 		relationships page
-
 <?php
-	require_once('templates/footer.html');
+	require_once('templates/head.html');
+	$filename = basename(preg_replace('/\.php$/', '', __FILE__));
+	echo "<script src='js/".$filename.".js'></script>";
+ 	require_once('templates/header.html');
 ?>
+	<section>
+		<div class="row">
+			<div class="3u$">
+				<h1>relationships</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="4u" id="relationships-friends">
+				<h3>friends</h3>
+			</div>
+			<div class="4u" id="relationships-requsts">
+				<h3>requests</h3>
+			</div>
+			<div class="4u" id="relationships-declined">
+				<h3>declined</h3>
+			</div>
+		</div>
+	</section>
