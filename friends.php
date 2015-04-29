@@ -49,5 +49,18 @@
    		 		<input type="text" id="search_friends" placeholder="search..." />
    		 	</label>
   		</div>
+  		<div class="5u$">
+  			<div class="radio">
+			  <input type="radio" id="myRadio" name="order" value="asc">
+			  <label for="myRadio">a-z</label>
+			  <input type="radio" id="myRadio1" name="order" value="DESC">
+			  <label for="myRadio1">z-a</label>
+			</div>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="5u$" id="friends">
+
+  		</div>
   	</div>
   </section>

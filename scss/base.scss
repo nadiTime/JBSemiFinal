@@ -101,3 +101,38 @@ a{
 #search_friends {
     padding-left: 20px;
 }
+
+input[type=radio],
+input[type='checkbox'] {
+  display: none;
+}
+input[type=radio] + label {
+  display: block;
+}
+input[type='checkbox'] + label:before,
+input[type='radio'] + label:before {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-right: 8px;
+  width: 23px;
+}
+input[type=radio] + label:before {
+  content: "\f10c"; /* Radio Unchecked */
+}
+#myRadio:checked + label:before {
+  content: "\f139"; /* Radio Checked */
+}
+
+#myRadio1:checked + label:before {
+  content: "\f13a"; /* Radio Checked */
+}
+
+.radio label,
+.checkbox label {
+  padding-left: 0;
+}
