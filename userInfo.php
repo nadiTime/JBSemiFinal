@@ -41,24 +41,24 @@
  ?>
  	<section>
  		<h1>userInfotmp</h1>
- 		<div class="row">
+ 		<div class="row ">
 			<div class="4u$">
-				<input type="email" name="user_email" placeholder="email" required autofocus/>
+				<input type="email" name="user_email" placeholder="email" class="activeInput" required autofocus/>
 			</div> 
  			<div class="4u">	
-  				<input type="password" name="user_password" placeholder="password" required/>
+  				<input type="password" name="user_password" placeholder="password" class="activeInput" required/>
 			</div> 
 			<div class="4u$">
-			<input type="password" name="re-enter_password" placeholder="re-enter password" required />
+			<input type="password" name="re_enter_password" placeholder="re-enter password" class="activeInput" required />
 			</div>
 			<div class="4u$">	
-				<input type="text" name="user_nickname" placeholder="nickname" required />
+				<input type="text" name="user_nickname" placeholder="nickname" class="activeInput" required />
 			</div>
 			<div class="4u$">
-				<input type="date" name="user_birthdate" required />
+				<input type="date" name="user_birthdate" class="activeInput" required />
 			</div>
 			<div class="4u">
-				<textarea placeholder="about myself" placeholder="about me" name="user_about"></textarea> 
+				<textarea placeholder="about myself" name="user_about" class="activeInput"></textarea> 
 			</div>
 			<div class="2u$"><button id="update-register">register</button></div>
 

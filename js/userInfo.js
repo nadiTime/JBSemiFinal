@@ -12,3 +12,26 @@ ajax to ../api/global.php to check session
 
 	email field on focus
 */
+$(document).ready(function(){
+	$("#update-register").on('click',function(){
+
+		var map = {};
+		$(".activeInput").each(function() {
+		    map[$(this).attr("name")] = $(this).val();
+		});
+		validate(map);
+		$.post( "api/operations.php", map)
+		  .done(function(data) {
+		  	var parsed_data = JSON.parse(data);
+		  	console.log(parsed_data.success);
+		    if(parsed_data.success){
+		    	alert('welcome '+map.user_nickname+'! you just registered');
+		    	window.location.href = "index.php";
+		    }
+		  });
+	})
+});
+
+function validate(map){
+	return 1;
+}

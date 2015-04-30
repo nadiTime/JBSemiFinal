@@ -49,3 +49,28 @@ mysql -> users
 			sender_id
 			reciever_id
 			status 0/1/2 -> on approvel is deleted 0 declined, 1 accepted, 2 waiting
+
+
+			operations.php:
+
+			<!-- 
+user profile operations:
+	insert new user
+
+	delete user
+
+	update user
+
+user friends operations
+
+	send friend request
+
+	accept request
+
+	decline request
+
+	regret request
+
+	
+
+ -->
