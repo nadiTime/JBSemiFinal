@@ -25,6 +25,13 @@ session_start();
 		}
 
 		//now check request status with friend
+		$sql = "SELECT `status`,`sender_id`,`reciever_id` FROM `requests`
+		 WHERE `reciever_id` = '$user_id' AND `sender_id` = '$friend_id'
+		 OR `sender_id` = '$user_id' AND `reciever_id` = '$friend_id'";
+		$answer= $sqlObj->query($sql);
+		if($answer){
+			$array['requests']  = mysqli_fetch_assoc($answer);
+		}
 		echo json_encode($array);
 	}
 	elseif (isset($_GET['userId'])) {
