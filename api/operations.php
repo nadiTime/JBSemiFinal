@@ -1,5 +1,5 @@
-
- <?php 
+<?php
+session_start();
  	require_once('functions.php');
 
  	if(isset($_POST['user_nickname'])&&isset($_POST['user_email'])&&isset($_POST['user_birthdate'])&&isset($_POST['user_about'])&&isset($_POST['user_password'])){
@@ -18,7 +18,8 @@
 				$sql="UPDATE `passwords` SET `pass` = '$password' WHERE `user_id` = '$id'";
 				$answer2= $sqlObj->query($sql);
  				if($answer2&&$answer1){
-					$success = array('success' => 1);				}
+					$success = array('success' => 1);
+				}
 				else{
 					$success = array('success' => 0);
 				} 
@@ -31,15 +32,12 @@
 				$answer2= $sqlObj->query($sql);
 				if($answer2&&$answer1){
 					$success = array('success' => $id);
-					session_start();
 					$_SESSION['id'] = $id;
 				}
 				else{
 					$success = array('success' => 0);
 				} 
 			}
-			
-			
 			echo json_encode($success);
  		}
  		else{

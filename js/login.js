@@ -13,6 +13,7 @@ $(document).ready(function(){
 				alert("welcome back "+data.nickname);
 				window.location.href = "index.php";
 			}
+			else alert("login failed");
 		})
 	})
 })

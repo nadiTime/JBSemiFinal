@@ -1,4 +1,5 @@
 <?php
+session_start();
 	require_once('functions.php');
 	//get user email and password, check for coralation and start session with user id
 	if(isset($_GET['user_email'])&&isset($_GET['user_password'])){
@@ -17,11 +18,12 @@
 			$answer = $sqlObj->query($sql);	
 			$passwordFromServer = mysqli_fetch_assoc($answer);
 			if($passwordFromUser==$passwordFromServer['pass']){
-				session_start();
+
 				$_SESSION['id'] =$id;
 				$arr['userId']=$id;
 				$arr['nickname'] = $res['nickname'];
 				$arr['success'] =1;
+
 			}
 		}
 

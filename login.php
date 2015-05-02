@@ -7,6 +7,11 @@
  -->
 
 <?php
+session_start();
+	if(isset($_SESSION['id'])){
+		header('Location:index.php');
+		die;
+	}
 	require_once('templates/head.html');
 	$filename = basename(preg_replace('/\.php$/', '', __FILE__));
 	echo "<script src='js/".$filename.".js'></script>";
