@@ -5,23 +5,27 @@
 		$email = $_GET['user_email'];
 		$passwordFromUser = md5($_GET['user_password']);		//get the user id by email
 		$sqlObj = connect();
-		$sql = "SELECT `id` FROM `users` WHERE `email`='$email'";
+		$sql = "SELECT `id`,`nickname` FROM `users` WHERE `email`='$email'";
 		$answer = $sqlObj->query($sql);								
-		$res =0;
+		$arr =[];
 		if($answer){
 			$res = mysqli_fetch_assoc($answer);
 			$id = $res['id'];
+			
+
 			$sql = "SELECT `pass` FROM `passwords` WHERE `user_id`='$id'"; //check if the same passwords
 			$answer = $sqlObj->query($sql);	
 			$passwordFromServer = mysqli_fetch_assoc($answer);
-			
 			if($passwordFromUser==$passwordFromServer['pass']){
 				session_start();
 				$_SESSION['id'] =$id;
+				$arr['userId']=$id;
+				$arr['nickname'] = $res['nickname'];
+				$arr['success'] =1;
 			}
 		}
 
-		echo json_encode($res);
+		echo json_encode($arr);
 
 												
 	}
