@@ -13,42 +13,64 @@ ajax to ../api/global.php to check session
 	email field on focus
 */
 $(document).ready(function(){
-	$.getJSON("api/userDetails.php",{user_id:'1'})
-	.done(function(data){
-		if(data.session){
-			var tmp = data.data;
-			for(key in tmp){
-				if($(".fromServer").attr('name')==key){
-					
-					$(this).value=tmp.key;
+		sessionStorage.setItem("userId",2);
+        if (sessionStorage.getItem("userId")){
+        	$("#update-register").text("update");
+        	var id = sessionStorage.getItem("userId");
+        	$.getJSON("api/userDetails.php",{user_id:id})
+			.done(function(data){
+				if(data.session){
+					var tmp = data.data;
+					$(".fromServer").each(function(e){
+						var key = $(this).attr("name");
+						this.value=tmp[key];
+					});
 				}
-			}
-		}
-	});
+			});
+			 $("#update-register").on('click',function(){
+			 	var id = sessionStorage.getItem("userId");
+				var map = {"update":id};
+				$(".activeInput").each(function() {
+				    map[$(this).attr("name")] = $(this).val();
+				});
+				if(validate(map,blurValidate)){
+				$.post( "api/operations.php", map)
+				  .done(function(data) {
+				  	var parsed_data = JSON.parse(data);
+				    if(parsed_data.success){
+				    	alert('update success');
+				    	window.location.href = "index.php";
+				    }
+				  });
+				}
+			})
+        } 
+        else {
+           $("#update-register").on('click',function(){
+				var map = {};
+				$(".activeInput").each(function() {
+				    map[$(this).attr("name")] = $(this).val();
+				});
+				if(validate(map,blurValidate)){
+				$.post( "api/operations.php", map)
+				  .done(function(data) {
+				  	var parsed_data = JSON.parse(data);
+				    if(parsed_data.success){
+				    	alert('welcome '+map.user_nickname+'! you just registered');
+				    	window.location.href = "index.php";
+				    }
+				  });
+				}
+			})
+        }
+	
 	var blurValidate;
 	$(".activeInput").each(function(){
 		$(this).bind('blur',function(e){
 			blurValidate = checkInput(e);
 		})
 	})
-	$("#update-register").on('click',function(){
-
-		var map = {};
-		$(".activeInput").each(function() {
-		    map[$(this).attr("name")] = $(this).val();
-		});
-
-		if(validate(map,blurValidate)){
-		$.post( "api/operations.php", map)
-		  .done(function(data) {
-		  	var parsed_data = JSON.parse(data);
-		    if(parsed_data.success){
-		    	alert('welcome '+map.user_nickname+'! you just registered');
-		    	window.location.href = "index.php";
-		    }
-		  });
-		}
-	})
+	
 });
 
 function checkInput(e){
@@ -69,6 +91,10 @@ function validate(map,blurValidate){
 
 	if(map.user_password!=map.re_enter_password){
 		alert("passwords must match");
+		return false;
+	}
+	if(map.user_password.length<6){
+		alert("password must be 6 or more characters");
 		return false;
 	}
 	if(!blurValidate){
