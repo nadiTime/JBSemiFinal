@@ -1,19 +1,26 @@
 $(document).ready(function(){
+	var userId = sessionStorage.getItem('userId');
 	if(sessionStorage.getItem('lastPage')){ //id if from friendships.php or friends.php 0 from else
-		$friendId=sessionStorage.getItem('lastPage');
+		var friendId=sessionStorage.getItem('lastPage');
+		/*ajax(friendId  and userId) to get friends details from userDetails.php
+		
+		data returned
+		 reg details +sec details + requsests
+			build friends page 
+			name, birth, email, image, about, posts, secret image, secret data, 
+		|| reg details+request status
+			name, birth, email, image, about, hisRequest status 1 -> show accept button, 
+			myRequest status 1 -> show request sent + date 
+		|| reg details
+			name name, birth, email, image 
+			show add button
+*/
+
 	}
-	/*ajax/or javascript session request check session last page global.php
-		if true return friend id{
-			ajax to get friend details from friendDetails and if friends get secret stuff
-			build correct page
-		}
-
-		else {
-			ajax request to get user details from userDetails.php
-			build correct page
-		}
-
+	/*take user id from sessionStorage and get user details from userDetails.php
+		name, birth, email, image, posts, secret image, secret data
 	*/
+
 
 })
 

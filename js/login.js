@@ -1,5 +1,13 @@
 $(document).ready(function(){
 	$('button').click(function(){
+		login();
+	});
+	$("input[type='password']").keypress(function( event ){
+	  	if ( event.which == 13 ) {
+	     	login();
+	  	}
+	});
+	function login(){
 		var map = {};
 		$(".activeInput").each(function() {
 		    map[$(this).attr("name")] = $(this).val();
@@ -15,5 +23,6 @@ $(document).ready(function(){
 			}
 			else alert("login failed");
 		})
-	})
+	}
 })
+
