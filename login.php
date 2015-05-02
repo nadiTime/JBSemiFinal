@@ -18,10 +18,10 @@
 				<h1>Login</h1>
 			</div>
 			<div class="3u$ -4u">
-				<input type="email" placeholder="email">
+				<input type="email" placeholder="email" name="user_email" class="activeInput">
 			</div>
 			<div class="3u -4u">
-				<input type="password" placeholder="password">
+				<input type="password" placeholder="password" name="user_password" class="activeInput">
 			</div>
 			<div class="3u$ -2u">
 				<a href="userInfo.php">register here</a>

@@ -1,21 +1,7 @@
-/*
-ajax to ../api/global.php to check session
-	returned email nickname birthdate about
-	
-	build relevant page
-	put in relevant fields
-	update button
-
-	else there is no session and fields remail empty
-	build relevant page
-	register button
-
-	email field on focus
-*/
 $(document).ready(function(){
-		sessionStorage.setItem("userId",2);
-        if (sessionStorage.getItem("userId")){
-        	$("#update-register").text("update");
+		
+        if (sessionStorage.getItem("userId")){			//check for session to get relevent data
+        	$("#update-register").text("update");			//and build right page
         	var id = sessionStorage.getItem("userId");
         	$.getJSON("api/userDetails.php",{user_id:id})
 			.done(function(data){
@@ -27,7 +13,7 @@ $(document).ready(function(){
 					});
 				}
 			});
-			 $("#update-register").on('click',function(){
+			 $("#update-register").on('click',function(){ 	//UPDATE USER
 			 	var id = sessionStorage.getItem("userId");
 				var map = {"update":id};
 				$(".activeInput").each(function() {
@@ -46,7 +32,7 @@ $(document).ready(function(){
 			})
         } 
         else {
-           $("#update-register").on('click',function(){
+           $("#update-register").on('click',function(){   //REGISTER USER
 				var map = {};
 				$(".activeInput").each(function() {
 				    map[$(this).attr("name")] = $(this).val();
@@ -56,6 +42,8 @@ $(document).ready(function(){
 				  .done(function(data) {
 				  	var parsed_data = JSON.parse(data);
 				    if(parsed_data.success){
+				    	var id = parsed_data.success;
+				    	sessionStorage.setItem("userId",id);
 				    	alert('welcome '+map.user_nickname+'! you just registered');
 				    	window.location.href = "index.php";
 				    }

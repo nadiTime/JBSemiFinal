@@ -30,7 +30,7 @@
 				$sql="INSERT INTO `passwords` (`user_id`,`pass`) VALUES('$id','$password')";
 				$answer2= $sqlObj->query($sql);
 				if($answer2&&$answer1){
-					$success = array('success' => 1);
+					$success = array('success' => $id);
 					session_start();
 					$_SESSION['id'] = $id;
 				}
