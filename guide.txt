@@ -15,7 +15,8 @@ php check where came from if friendstuff -> saves data on server
 	 	if friendstuff -> build the friend page on index.html
 	 	if now build regular index.php
 
-	
+	use prepared statements
+	and real escape string
 
 mysql -> users
 			id:unique

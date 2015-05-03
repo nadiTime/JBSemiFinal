@@ -15,24 +15,27 @@
  	<section>
 	 	<div id="person" class="row">
 		 	<div id="profile-picture" class="2u">	
-		 		<img src="api/pics/profile/user.jpg"/>
+		 		<img src=""/>
 		 	</div>
-			<div id="user-details" class="4u">
-				<p name="name">user name</p>
-				<p name="birthdate">birthdate</p>
-				<p name="email">nadavcn@gmail.com</p>
+			<div id="user_details" class="4u">
+				<p name="user_nickname"></p>
+				<p name="user_birthdate"></p>
+				<p name="user_email"></p>
 			</div>
 
-			<div id="secret-data" class="4u$">secret data goes here</div>
+			<div id="secret_data" class="4u$">
+				<p name = "user_secret_note"></p>
+				<img name = "user_secret_image" src=""/>
+			</div>
 		</div>
 		<div id="posts" class="row">
 			<div class="10u">
 				<textarea placeholder="Whats on yur mind?"></textarea>
-				<div id="posts-view">posts view</div>
+				<div id="posts_view"></div>
 			</div>
 			<div class="2u"><button>Post</button></div>
 		</div>
-	 	<div id="request">requests</div>
+	 	<div id="request"></div>
 	 	
 	 </section>
 
