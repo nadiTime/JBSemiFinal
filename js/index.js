@@ -1,11 +1,32 @@
 $(document).ready(function(){
 	var userId = sessionStorage.getItem('userId');
-	sessionStorage.setItem('lastPage',6);
+	sessionStorage.setItem('lastPage',7);
 	if(sessionStorage.getItem('lastPage')){ //id if from friendships.php or friends.php 0 from else
 		var friendId=sessionStorage.getItem('lastPage');
 		$.getJSON("api/userDetails.php",{userId:userId,friendId:friendId})//ajax(friendId  and userId) to get friends details from userDetails.php
 		.done(function(data){
 			console.log(data);
+			//regData
+
+			//check request
+			if(data.requests){
+				
+				var request = data.requests;
+				if(request['status']==1){   //friends, there is secret data in the object
+					
+				}
+				else if(request.sender_id==userId){		//show sent request and date
+					
+				}
+				else if(request['status']==2){  //show accept button
+
+				}
+				else{      //just regData + add button
+
+				}
+			}
+			
+			//posts
 		})
 		
 		/*data returned
