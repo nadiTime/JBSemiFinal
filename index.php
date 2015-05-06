@@ -21,6 +21,7 @@
 				<p name="user_nickname"></p>
 				<p name="user_birthdate"></p>
 				<p name="user_email"></p>
+				<button id="request_button"></button>
 			</div>
 
 			<div id="secret_data" class="4u$">
@@ -29,11 +30,15 @@
 			</div>
 		</div>
 		<div id="posts" class="row">
-			<div class="10u">
+			<div id="new_post" class="10u$">
 				<textarea placeholder="Whats on yur mind?"></textarea>
+				<div class="2u"><button>Post</button></div>
+			</div>
+
+			<div class="10u$">
 				<div id="posts_view"></div>
 			</div>
-			<div class="2u"><button>Post</button></div>
+			
 		</div>
 	 	<div id="request"></div>
 	 	
