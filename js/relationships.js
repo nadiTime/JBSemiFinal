@@ -1,3 +1,12 @@
+$(document).ready(function(){
+
+
+
+	$('.userSelect').on('click',function(){
+		sessionStorage.setItem('lastPage',$(this).attr("data-user-id"))
+	})
+})
+
 /*
 ajax to api/getAllUsers.php
 	returns id userpicpath usernickname requeststatus,0 1 2 
