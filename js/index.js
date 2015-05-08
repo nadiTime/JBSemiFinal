@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	var userId = sessionStorage.getItem('userId');
-	sessionStorage.setItem('lastPage',2);
 	if(sessionStorage.getItem('lastPage')){
 		var friendId=sessionStorage.getItem('lastPage');
 		$.getJSON("api/userDetails.php",{userId:userId,friendId:friendId})//ajax(friendId  and userId) to get friends details from userDetails.php
@@ -12,7 +11,7 @@ $(document).ready(function(){
 				var request = data.requests;
 				if(request['status']==1){   //friends, there is secret data in the object
 					secData(data);
-					$('#request_button').hide();
+					
 				}
 				else if(request.sender_id==userId){		//show sent request and date
 					$('#request_button').text('request sent').addClass('sent');		
@@ -55,6 +54,7 @@ function regDataAndPosts(data){
 
 
 function secData(data){
+	$('#request_button').hide();
 	$('#secret_data').show();
 	$("#secret_data p").text(data.secret.user_secret_image); 
 	$("#secret_data img").attr("src",data.secret.user_secret_note);

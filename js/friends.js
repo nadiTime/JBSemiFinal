@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	/*
-		ajax/or javascript session  to check which link was clicked "find friends" or "my friends"
-
+	
+		var friendsOrigin = sessionStorage.getItem('friendsOrigin');// check which link was clicked "find friends" or "my friends"
+		/*
 		if findfriends{
 			ajax to api/getFriends.php that echos back all friends
 		}
