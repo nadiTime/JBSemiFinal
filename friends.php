@@ -14,23 +14,8 @@
 		c. if there are no results show a message
 	order results ASC or DESC (with radio buttons) (ajax)
 		a. on selection the display will change dynamically
-3. display the navigation menu
-4. clicking on item (user):
-	a. redirect to index.html
-	b. display the selected user details and his posts
-		-if the user is NOT a friend:
-			secret data is hidden
-			show "add friend" button
-			clicking on "add friend" will disable the button and add the message "request sent to user, date"
-		-if the user is not a friend BUT sent us a friend request (ajax):
-			secret data is hidden 
-			show "accept request" and "decline request" buttons
-			clicking on accept will hide the buttons and display the user secret data
-			clicking on decline will hide the buttons and show message "frienship was declined"
-			-if the user that was declined enters our profile again he still see the message "request sent, date"
-		-if the user is a friend:
-			secret data is displayd
-			unfriend option button -->
+
+ -->
 
 <?php
 	require_once('templates/head.html');
@@ -51,9 +36,9 @@
   		</div>
   		<div class="5u$">
   			<div class="radio">
-			  <input type="radio" id="myRadio" name="order" value="asc">
+			  <input class="order" type="radio" id="myRadio" name="order" value="asc">
 			  <label for="myRadio">a-z</label>
-			  <input type="radio" id="myRadio1" name="order" value="DESC">
+			  <input class="order" type="radio" id="myRadio1" name="order" value="desc">
 			  <label for="myRadio1">z-a</label>
 			</div>
   		</div>

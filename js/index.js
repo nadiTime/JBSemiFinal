@@ -4,7 +4,6 @@ $(document).ready(function(){
 		var friendId=sessionStorage.getItem('lastPage');
 		$.getJSON("api/userDetails.php",{userId:userId,friendId:friendId})//ajax(friendId  and userId) to get friends details from userDetails.php
 		.done(function(data){
-			console.log(data);
 			regDataAndPosts(data); // all the regular data and posts
 			//check request
 			if(data.requests){			
