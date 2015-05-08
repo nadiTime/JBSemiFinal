@@ -35,9 +35,7 @@ $(document).ready(function(){
 			secData(data);
 		})
 	}
-
 });
-
 function regDataAndPosts(data){
 	var tmp = data.regData;
 	$("#user_details").children().each(function(){
@@ -50,11 +48,12 @@ function regDataAndPosts(data){
 		$("#posts_view").append(post);
 	}
 }
-
-
 function secData(data){
 	$('#request_button').hide();
-	$('#secret_data').show();
-	$("#secret_data p").text(data.secret.user_secret_image); 
-	$("#secret_data img").attr("src",data.secret.user_secret_note);
+	if(data.secret){
+		$('#secret_data').show();
+		$("#secret_data p").text(data.secret.user_secret_image); 
+		$("#secret_data img").attr("src",data.secret.user_secret_note);
+	}
+
 }
