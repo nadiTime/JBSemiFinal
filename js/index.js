@@ -52,10 +52,11 @@ $(document).ready(function(){
 		var files;
 		$('input[type=file]').on('change', function(e){
 			files = event.target.files;
+			console.log(files[0]['name']);
+			$('.custom-file-input::before').css('content',files[0]['name'])
 		});
 		$('#uploadImage').click(function(){
 			var data = new FormData();
-			console.log(files[0]);
 			var image = files[0];
 			data.append('pic', image);
 			$.ajax({
@@ -68,15 +69,19 @@ $(document).ready(function(){
 		        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
 		        success: function(data, textStatus, jqXHR)
 		        {
+		        	 
 		            if(typeof data.error === 'undefined')
 		            {
 		                // Success so call function to process the form
-		                submitForm(event, data);
+		               console.log(data);
+		               var d = new Date();
+		               $("#profile-picture img").attr("src",data+"?"+d.getTime());
 		            }
 		            else
 		            {
 		                // Handle errors here
 		                console.log('ERRORS: ' + data.error);
+
 		            }
 		        },
 		        error: function(jqXHR, textStatus, errorThrown)

@@ -186,11 +186,17 @@ input[type=radio] + label:before {
   }
 }
 .custom-file-input::-webkit-file-upload-button {
-  display: none;
+  	display: none;
  
 }
 .custom-file-input::before {
 	content: 'choose file';
-  display: inline-block;
-  cursor: pointer;
+  	display: inline-block;
+  	cursor: pointer;
 }
+.custom-file-input1::before {
+	content: 'choose file';
+  	display: inline-block;
+  	cursor: pointer;
+}
+

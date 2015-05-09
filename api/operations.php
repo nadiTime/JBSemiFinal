@@ -62,7 +62,6 @@ session_start();
 		$target = 'pics/profile/';
 		if(is_uploaded_file($_FILES['pic']['tmp_name'])){
 			$ext = pathinfo($_FILES['pic']['name'], PATHINFO_EXTENSION);
-			echo $ext;
 			$name = $_SESSION['id'];
 	      	$status = array();
 	      	$answer = move_uploaded_file($_FILES['pic']['tmp_name'], $target.$name.".".$ext);
@@ -75,8 +74,10 @@ session_start();
 	     		$status = array('success' => 1);
 
 	     	}
-	      	echo json_encode($status);
+	     	$fullpath = 'api/'.$target.$name.'.'.$ext;
+	      	echo  json_encode($fullpath);
 	    }
+
 	}
 
 
