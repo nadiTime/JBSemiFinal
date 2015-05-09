@@ -15,9 +15,9 @@ $(document).ready(function(){
 
 		$.getJSON("api/services.php",map)
 		.done(function(data){
-				console.log(data);
 			if(data.success){
 				sessionStorage.setItem("userId",data.userId);
+				sessionStorage.setItem("lastPage",0);
 				alert("welcome back "+data.nickname);
 				window.location.href = "index.php";
 			}

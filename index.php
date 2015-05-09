@@ -16,6 +16,10 @@
 	 	<div id="person" class="row">
 		 	<div id="profile-picture" class="2u">	
 		 		<img src=""/>
+		 		<div class="row" id="myForm">
+			      <div class="12u"><input class = "custom-file-input" type="file" name="pic" id="userFile" /></div>
+			      <div class="12u"><button id="uploadImage">Upload</button></div>
+		    	</div>  
 		 	</div>
 			<div id="user_details" class="4u">
 				<p name="user_nickname"></p>
