@@ -29,6 +29,19 @@ $(document).ready(function(){
 	}
 	else{ 									//load user page
 		$('#new_post').show();
+		$('#new_post button').click(function(){
+		var newPost = $('#new_post textarea').val();
+			if(newPost){
+				var time = timeConverter(Math.round((new Date()).getTime() / 1000));
+
+				$.post('api/operations.php',{post:newPost})
+				.done(function(){
+					var post = $("<p class='user_post'>"+newPost+"<span class='post_date'>"+time+"</span>");
+					$("#posts_view").prepend(post);
+				})
+			}
+			
+		});
 		$.getJSON("api/userDetails.php",{userId:userId})
 		.done(function(data){
 			regDataAndPosts(data);
@@ -36,6 +49,9 @@ $(document).ready(function(){
 		})
 	}
 });
+
+
+
 function regDataAndPosts(data){
 	var tmp = data.regData;
 	$("#user_details").children().each(function(){
@@ -44,10 +60,14 @@ function regDataAndPosts(data){
 	});
 	$("#profile-picture img").attr("src",tmp['image_path']);
 	for(var prop in data.posts){
-		var post = $("<p class='user_post'>"+data.posts[prop]['post']+"<span class='post_date'>"+data.posts[prop]['post_date']+"</span>");
+		
+		var date = timeConverter(Math.round((new Date(Date.parse(data.posts[prop]['post_date']))).getTime() / 1000));
+		var post = $("<p class='user_post'>"+data.posts[prop]['post']+"<span class='post_date'>"+date+"</span>");
 		$("#posts_view").append(post);
 	}
 }
+
+
 function secData(data){
 	$('#request_button').hide();
 	if(data.secret){
@@ -56,4 +76,20 @@ function secData(data){
 		$("#secret_data img").attr("src",data.secret.user_secret_note);
 	}
 
+}
+
+function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp*1000);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var zero = '';
+  if(min<10){
+	min = '0'+min;
+  }
+  var time = date + ',' + month + ' ' + year + ' ' + hour + ':' + min;
+  return time;
 }

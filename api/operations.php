@@ -45,4 +45,14 @@ session_start();
  			echo json_encode($validate);
  		}
  	}
-
+ 	if(isset($_POST['post'])){
+ 		$sqlObj = connect();
+ 		$userId = $_SESSION['id'];
+ 		$post = $_POST['post'];
+ 		$sql="INSERT INTO `posts`(`user_id`, `post`) VALUES ('$userId','$post')";
+		$answer1= $sqlObj->query($sql);
+		if($answer){
+			$success = array('success' => 1);
+		}
+		echo json_encode($success);
+ 	}

@@ -63,7 +63,7 @@ session_start();
 			$status =true;	
 		}
 		$sql="SELECT `post` as post, `date` as post_date FROM `posts`
-		 WHERE user_id=$user_id ORDER BY post ASC";
+		 WHERE user_id=$user_id ORDER BY post_date desc";
 		$answer= $sqlObj->query($sql);
 		if($answer){
 			$arr = [];
