@@ -47,13 +47,16 @@ $(document).ready(function(){
 			secData(data);
 		});
 		$("#profile-picture img").css('cursor','pointer').click(function(){
-			$('#myForm').addClass('animateForm');
+			$('#myForm').toggleClass('animateForm');
+		});
+		$('#choose_file').on('click',function(){
+			$('input[type=file]').trigger('click');
 		});
 		var files;
 		$('input[type=file]').on('change', function(e){
 			files = event.target.files;
 			console.log(files[0]['name']);
-			$('.custom-file-input::before').css('content',files[0]['name'])
+			$('#choose_file').text(files[0]['name'])
 		});
 		$('#uploadImage').click(function(){
 			var data = new FormData();
@@ -73,6 +76,8 @@ $(document).ready(function(){
 		            if(typeof data.error === 'undefined')
 		            {
 		                // Success so call function to process the form
+		               $('#myForm').toggleClass('animateForm');
+
 		               console.log(data);
 		               var d = new Date();
 		               $("#profile-picture img").attr("src",data+"?"+d.getTime());

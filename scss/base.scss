@@ -169,9 +169,10 @@ input[type=radio] + label:before {
 
 @-webkit-keyframes slide /* Safari and Chrome */
 {
-	from {height: 0;}
-	to {height: 200px;}
+	from {height: 0px;}
+	to {height: 5em;}
 }
+
 .animateForm{
 	-moz-animation: slide 0.5s ease 0.5s forwards;
    -webkit-animation: slide 0.5s ease 0.5s forwards;
@@ -179,24 +180,8 @@ input[type=radio] + label:before {
    -ms-animation: slide 0.5s ease 0.5s forwards;
     animation: slide 0.5s ease 0.5s forwards;
 }
-#userFile{
-	&:hover{
-  	background-color: #2F4A9B;
-  	color:white
-  }
-}
-.custom-file-input::-webkit-file-upload-button {
-  	display: none;
- 
-}
-.custom-file-input::before {
-	content: 'choose file';
-  	display: inline-block;
-  	cursor: pointer;
-}
-.custom-file-input1::before {
-	content: 'choose file';
-  	display: inline-block;
-  	cursor: pointer;
-}
 
+#userFile{
+	display:none;
+}
+ 

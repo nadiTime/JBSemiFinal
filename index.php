@@ -17,7 +17,7 @@
 		 	<div id="profile-picture" class="2u">	
 		 		<img src=""/>
 		 		<div class="row" id="myForm">
-			      <div class="12u"><input class = "custom-file-input" type="file" name="pic" id="userFile" /></div>
+			      <div class="12u"><button id="choose_file">choose file</button><input type="file" name="pic" id="userFile" /></div>
 			      <div class="12u"><button id="uploadImage">Upload</button></div>
 		    	</div>  
 		 	</div>
