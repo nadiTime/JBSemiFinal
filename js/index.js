@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var userId = sessionStorage.getItem('userId');
 	if(sessionStorage.getItem('lastPage')!=0){
 		var friendId=sessionStorage.getItem('lastPage');
-		$.getJSON("api/userDetails.php?friendId")//ajax(friendId  and userId) to get friends details from userDetails.php
+		$.getJSON("api/userDetails.php?friendId="+friendId)//ajax(friendId  and userId) to get friends details from userDetails.php
 		.done(function(data){
 			regDataAndPosts(data); // all the regular data and posts
 			//check request
@@ -17,7 +17,7 @@ $(document).ready(function(){
 					$('#request_button').text('request sent').addClass('sent');		
 				}
 				else if(request['status']==2){  //show accept button
-					$('#request_button').text('accept').addClass('sent');
+					$('#request_button').text('accept').addClass('accept');
 				}
 			}
 			else{      //+ add button

@@ -89,7 +89,20 @@ button{
 .sent{
 	background-color:$header-color;
 	color:white;
+	cursor:default;
+	&:hover{
+		border-color: $header-color;	
+	}
 }
+
+.accept{
+	cursor:pointer;
+	&:hover{
+		border-color: white;	
+	}
+	
+}
+
 .user_post{
 	background-color: #bbbbbb;
 	border-radius: 0.5em;

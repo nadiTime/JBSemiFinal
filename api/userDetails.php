@@ -8,9 +8,9 @@ session_start();
 	$success = true;
 	require_once ('functions.php');
 	if(isset($_GET['friendId'])){
-		if($_GET['userId']!=$_GET['friendId']){
-
-			$user_id=$_SESSION['id'];
+		$userId = $_SESSION['id'];
+		if($userId!=$_GET['friendId']){
+			$user_id=$userId;
 			$friend_id=$_GET['friendId'];
 			$sqlObj = connect();
 			$sql="SELECT `email` as user_email, nickname as user_nickname, birthdate as user_birthdate,
