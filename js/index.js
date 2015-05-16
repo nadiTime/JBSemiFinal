@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var userId = sessionStorage.getItem('userId');
 	if(sessionStorage.getItem('lastPage')!=0){
 		var friendId=sessionStorage.getItem('lastPage');
-		$.getJSON("api/userDetails.php",{userId:userId,friendId:friendId})//ajax(friendId  and userId) to get friends details from userDetails.php
+		$.getJSON("api/userDetails.php?friendId")//ajax(friendId  and userId) to get friends details from userDetails.php
 		.done(function(data){
 			regDataAndPosts(data); // all the regular data and posts
 			//check request
@@ -41,7 +41,7 @@ $(document).ready(function(){
 				})
 			}
 		});
-		$.getJSON("api/userDetails.php",{userId:userId})
+		$.getJSON("api/userDetails.php?userId")
 		.done(function(data){
 			regDataAndPosts(data);
 			secData(data);
@@ -55,7 +55,6 @@ $(document).ready(function(){
 		var files;
 		$('input[type=file]').on('change', function(e){
 			files = event.target.files;
-			console.log(files[0]['name']);
 			$('#choose_file').text(files[0]['name'])
 		});
 		$('#uploadImage').click(function(){
@@ -126,8 +125,8 @@ function secData(data){
 	$('#request_button').hide();
 	if(data.secret){
 		$('#secret_data').show();
-		$("#secret_data p").text(data.secret.user_secret_image); 
-		$("#secret_data img").attr("src",data.secret.user_secret_note);
+		$("#secret_data p").text(data.secret.user_secret_note); 
+		$("#secret_data img").attr("src",data.secret.user_secret_image);
 	}
 
 }

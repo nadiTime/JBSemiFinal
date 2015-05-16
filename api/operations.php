@@ -1,7 +1,6 @@
 <?php
 session_start();
  	require_once('functions.php');
-
  	if(isset($_POST['user_nickname'])&&isset($_POST['user_email'])&&isset($_POST['user_birthdate'])&&isset($_POST['user_about'])&&isset($_POST['user_password'])){
  		if(validate($_POST['user_nickname'],$_POST['user_email'],$_POST['user_password'])){
  			$nickname = $_POST['user_nickname'];
@@ -12,7 +11,7 @@ session_start();
  			$active = 1;
  			$sqlObj = connect();
  			if(isset($_POST['update'])){
- 				$id = $_POST['update'];
+ 				$id = $_SESSION['id'];
  				$sql = "UPDATE `users` SET `nickname` = '$nickname', `email` = '$email', `birthdate` = '$birthdate', `about` = '$about' WHERE `id` = $id";
  				$answer1= $sqlObj->query($sql);
 				$sql="UPDATE `passwords` SET `pass` = '$password' WHERE `user_id` = '$id'";
@@ -28,11 +27,13 @@ session_start();
 				$sql="INSERT INTO `users` (`nickname`,`email`,`birthdate`,`about`) VALUES('$nickname','$email','$birthdate','$about')";
 				$answer1= $sqlObj->query($sql);
 				$id = $sqlObj->insert_id;
-				$sql="INSERT INTO `passwords` (`user_id`,`pass`) VALUES('$id','$password')";
+				$sql="INSERT INTO `passwords` (`user_id`,`pass`) VALUES('$id','$password');
+				INSERT INTO `secret` (`user_id`, `secret_image_path`, `note`) VALUES('$id','api/pics/default.jpg','')";
 				$answer2= $sqlObj->query($sql);
 				if($answer2&&$answer1){
 					$success = array('success' => $id);
 					$_SESSION['id'] = $id;
+
 				}
 				else{
 					$success = array('success' => 0);
@@ -79,6 +80,29 @@ session_start();
 	    }
 
 	}
+	if(isset($_GET['updateSecret'])){
+		if(is_uploaded_file($_FILES['pic']['tmp_name'])){
+			$sqlObj = connect();
+	 		$userId = $_SESSION['id'];
+	 		$target = 'pics/secret/';
+	 		$ext = pathinfo($_FILES['pic']['name'], PATHINFO_EXTENSION);
+	      	$status = array('success'=>1);
+	      	$answer = move_uploaded_file($_FILES['pic']['tmp_name'], $target.$userId.".".$ext);
+	     	if(!$answer){
+	     		$status = array('success' => 0);
+	     	}
+	     	else{
+	     		$path = 'api/'.$target.$userId.".".$ext;
+	     		$note = $_GET['updateSecret'];
+				$sql = "UPDATE `secret` SET `secret_image_path`='$path', `note`='$note' WHERE user_id = $userId";
+				$answer1= $sqlObj->query($sql);
+				if(!$answer){
+					$status['success'] = 0;
+				}
+			}
+			echo json_encode($status);
+		}
+	}
 
 
 	function updatePicture($path){
@@ -88,3 +112,4 @@ session_start();
 		$answer = $sqlObj->query($sql);
 		return ($answer);
 	}
+

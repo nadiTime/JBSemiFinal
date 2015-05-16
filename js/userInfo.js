@@ -1,38 +1,96 @@
 $(document).ready(function(){
-		
-        if (sessionStorage.getItem("userId")){			//check for session to get relevent data
-        	$("#update-register").text("update");			//and build right page
-        	var id = sessionStorage.getItem("userId");
-        	$.getJSON("api/userDetails.php",{user_id:id})
-			.done(function(data){
-				if(data.session){
-					var tmp = data.data;
-					$(".fromServer").each(function(e){
-						var key = $(this).attr("name");
-						this.value=tmp[key];
-					});
-				}
+	
+	var blurValidate;
+	$(".activeInput").each(function(){
+		$(this).bind('blur',function(e){
+			blurValidate = checkInput(e);
+		})
+	});
+
+	$.getJSON('api/userDetails.php?userId&userInfo')
+	.done(function(data){
+		if(data.success){
+			$("#update-register").text("update");
+        	$(".fromServer").each(function(e){
+				var key = $(this).attr("name");
+				this.value=data.regData[key];
 			});
-			 $("#update-register").on('click',function(){ 	//UPDATE USER
-			 	var id = sessionStorage.getItem("userId");
-				var map = {"update":id};
+			$("#update-register").on('click',function(){ 	//UPDATE USER
+				var map = {"update":1};
 				$(".activeInput").each(function() {
 				    map[$(this).attr("name")] = $(this).val();
 				});
 				if(validate(map,blurValidate)){
-				$.post( "api/operations.php", map)
-				  .done(function(data) {
-				  	var parsed_data = JSON.parse(data);
-				    if(parsed_data.success){
-				    	alert('update success');
-				    	window.location.href = "index.php";
-				    }
-				  });
+					$.post( "api/operations.php", map)
+				 	.done(function(data){
+					  	var parsed_data = JSON.parse(data);
+					    if(parsed_data.success){
+					    	alert('update success');
+					    	window.location.href = "index.php";
+					    }
+				  	});
 				}
+			});
+			$('#showSecretUpdate').click(function(){
+				$('#secret').show();
+				$('#secret').click(function(e){
+					if( e.target !== this ){ 
+	      				return;
+						
+					}
+					else{
+						$(this).hide();
+					}
+				});
+			});
+			$('#choose_file').on('click',function(){
+				$('input[type=file]').trigger('click');
+			});
+			var files;
+			$('input[type=file]').on('change', function(e){
+				files = event.target.files;
+				$('#choose_file').text(files[0]['name'])
+			});
+			$('#uploadSecret').click(function(){
+				var data = new FormData();
+				var image = files[0];
+				data.append('pic', image);
+				var note = $('#secret_note').val();
+				$.ajax({
+			        url: 'api/operations.php?updateSecret='+note,
+			        type: 'POST',
+			        data: data,
+			        cache: false,
+			        dataType: 'json',
+			        processData: false, // Don't process the files
+			        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+			        success: function(data, textStatus, jqXHR)
+			        {
+			        	 
+			            if(typeof data.error === 'undefined')
+			            {
+			                // Success so call function to process the form
+			             	alert('update success');
+					    	window.location.href = "index.php";	  
+			            }
+			            else
+			            {
+			                // Handle errors here
+			                console.log('ERRORS: ' + data.error);
+
+			            }
+			        },
+			        error: function(jqXHR, textStatus, errorThrown)
+			        {
+			            // Handle errors here
+			            console.log('ERRORS: ' + textStatus);
+			            // STOP LOADING SPINNER
+			        }
+	    		});
 			})
-        } 
-        else {
-           $("#update-register").on('click',function(){   //REGISTER USER
+		}
+		else{
+			$("#update-register").on('click',function(){   //REGISTER USER
 				var map = {};
 				$(".activeInput").each(function() {
 				    map[$(this).attr("name")] = $(this).val();
@@ -50,15 +108,8 @@ $(document).ready(function(){
 				  });
 				}
 			})
-        }
-	
-	var blurValidate;
-	$(".activeInput").each(function(){
-		$(this).bind('blur',function(e){
-			blurValidate = checkInput(e);
-		})
-	})
-	
+		}
+	});
 });
 
 function checkInput(e){

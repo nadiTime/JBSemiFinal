@@ -1,11 +1,16 @@
 <?php
 session_start();
-	$status=false;
+	if(!isset($_SESSION['id'])){
+		$success = 0;
+		echo json_encode($success);
+		die;
+	}
+	$success = true;
 	require_once ('functions.php');
-	if(isset($_GET['userId'])&&isset($_GET['friendId'])){
+	if(isset($_GET['friendId'])){
 		if($_GET['userId']!=$_GET['friendId']){
 
-			$user_id=$_GET['userId'];
+			$user_id=$_SESSION['id'];
 			$friend_id=$_GET['friendId'];
 			$sqlObj = connect();
 			$sql="SELECT `email` as user_email, nickname as user_nickname, birthdate as user_birthdate,
@@ -14,7 +19,9 @@ session_start();
 			$answer= $sqlObj->query($sql);
 			if($answer){
 				$array['regData'] =  mysqli_fetch_assoc($answer);
-				$status = true;	
+			}
+			else{
+				$success = false;
 			}
 			//select posts
 			$sql="SELECT `post` as post, `date` as post_date FROM `posts`
@@ -27,6 +34,9 @@ session_start();
 				}
 				$array['posts'] = $arr; 
 			}
+			else{
+				$success = false;
+			}
 
 			//now check request status with friend
 			$sql = "SELECT `status`,`sender_id`,`reciever_id` FROM `requests`
@@ -35,6 +45,9 @@ session_start();
 			$answer= $sqlObj->query($sql);
 			if($answer){
 				$array['requests']  = mysqli_fetch_assoc($answer);
+			}
+			else{
+				$success = false;
 			}
 
 			//check if status 1 and get secret data
@@ -47,30 +60,40 @@ session_start();
 				if($answer){
 					$array['secret']  = mysqli_fetch_assoc($answer);
 				}
+				else{
+					$success = false;
+				}
 			}
 			
 		}
 	}
 		
 	elseif (isset($_GET['userId'])) {
-		$user_id=$_GET['userId'];
+		$user_id=$_SESSION['id'];
 		$sqlObj = connect();
 		$sql="SELECT `email` as user_email, nickname as user_nickname, birthdate as user_birthdate,
 		about as user_about, image_path, register_date FROM `users` WHERE id=$user_id";
 		$answer= $sqlObj->query($sql);
 		if($answer){
 			$array['regData'] =  mysqli_fetch_assoc($answer);
-			$status =true;	
 		}
-		$sql="SELECT `post` as post, `date` as post_date FROM `posts`
-		 WHERE user_id=$user_id ORDER BY post_date desc";
-		$answer= $sqlObj->query($sql);
-		if($answer){
-			$arr = [];
-			while($res = mysqli_fetch_assoc($answer)){
-				$arr[] =$res;
+		else{
+			$success = false;
+		}
+		if(!isset($_GET['userInfo'])){
+			$sql="SELECT `post` as post, `date` as post_date FROM `posts`
+			 WHERE user_id=$user_id ORDER BY post_date desc";
+			$answer= $sqlObj->query($sql);
+			if($answer){
+				$arr = [];
+				while($res = mysqli_fetch_assoc($answer)){
+					$arr[] =$res;
+				}
+				$array['posts'] = $arr; 
 			}
-			$array['posts'] = $arr; 
+			else{
+				$success = false;
+			}
 		}
 		$sql = "SELECT `secret_image_path` as user_secret_image,`note` as user_secret_note
 			 FROM `secret`
@@ -79,8 +102,13 @@ session_start();
 			if($answer){
 				$array['secret']  = mysqli_fetch_assoc($answer);
 			}
+			else{
+				$success = false;
+			}
+
 
 	}
-	if($status){
+	if($success){
+		$array['success'] = $success;
 		echo json_encode($array);	
 	}
