@@ -26,6 +26,7 @@
 				<p name="user_birthdate"></p>
 				<p name="user_email"></p>
 				<button id="request_button"></button>
+				<button id="decline_button"></button>
 			</div>
 
 			<div id="secret_data" class="4u$">

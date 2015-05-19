@@ -15,9 +15,14 @@ $(document).ready(function(){
 				}
 				else if(request.sender_id==userId){		//show sent request and date
 					$('#request_button').text('request sent').addClass('sent');		
-				}
+				}	
 				else if(request['status']==2){  //show accept button
 					$('#request_button').text('accept').addClass('accept');
+					$('#decline_button').text('decline').show();
+					$('#decline_button').on('click',function(){
+						var declined = 0;
+						handleRequest(friendId,declined);
+					});
 					$('#request_button').on('click',function(){
 						handleRequest(friendId);
 					});
@@ -118,7 +123,6 @@ function regDataAndPosts(data){
 	}
 	$("#posts_view").empty();
 	for(var prop in data.posts){
-
 		var date = timeConverter(Math.round((new Date(Date.parse(data.posts[prop]['post_date']))).getTime() / 1000));
 		var post = $("<p class='user_post'>"+data.posts[prop]['post']+"<span class='post_date'>"+date+"</span>");
 		$("#posts_view").append(post);
@@ -152,22 +156,28 @@ function timeConverter(UNIX_timestamp){
   return time;
 }
 
-function handleRequest(friendId){
+function handleRequest(friendId, declined){
+	if (typeof(declined)==='undefined') declined = 1;
 	var success = false;
-	$.getJSON('api/operations.php',{'requestToHandle':friendId})
+	$.getJSON('api/operations.php',{'requestToHandle':friendId,'declined':declined})
 	.done(function(data){
 		if(data[0]==1){
 			$('#request_button').hide();
-			$.getJSON("api/userDetails.php?friendId="+friendId)
-			.done(function(data){
-				regDataAndPosts(data);
-				secData(data);
-			})
+			if(declined==0){
+				$('#decline_button').text('declined').addClass('sent');
+			}
+			else{
+				$.getJSON("api/userDetails.php?friendId="+friendId)
+				.done(function(data){
+					regDataAndPosts(data);
+					secData(data);
+				})
+			}
+			
 		}
 		else if(data[0]==2){
 			$('#request_button').text('request sent').addClass('sent');
+			$('#request_button').unbind();
 		}
-
-		$('#request_button').unbind();
 	});
 }

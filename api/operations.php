@@ -103,7 +103,7 @@ session_start();
 			echo json_encode($status);
 		}
 	}
-	if(isset($_GET['requestToHandle'])){
+	if(isset($_GET['requestToHandle'])&&isset($_GET['declined'])){
 		$success=array(0=>false);
 		$user_id = $_SESSION['id'];
 		$friend_id = $_GET['requestToHandle'];
@@ -113,7 +113,8 @@ session_start();
 		$answer= $sqlObj->query($sql);
 		$tmp = mysqli_fetch_assoc($answer);
 		if($tmp['status']==2){
-			$sql = "UPDATE `requests` SET `status`=1 WHERE reciever_id = '$user_id'";
+			$declined = $_GET['declined'];
+			$sql = "UPDATE `requests` SET `status`='$declined' WHERE reciever_id = '$user_id'";
 			$answer= $sqlObj->query($sql);
 			if ($answer) {
 				$success[0]=1;
