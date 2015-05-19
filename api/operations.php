@@ -103,6 +103,39 @@ session_start();
 			echo json_encode($status);
 		}
 	}
+	if(isset($_GET['requestToHandle'])){
+		$success=array(0=>false);
+		$user_id = $_SESSION['id'];
+		$friend_id = $_GET['requestToHandle'];
+		$sqlObj = connect();
+		$sql = "SELECT `status` FROM `requests`
+			 WHERE `sender_id` = '$friend_id' AND `reciever_id` = '$user_id'";
+		$answer= $sqlObj->query($sql);
+		$tmp = mysqli_fetch_assoc($answer);
+		if($tmp['status']==2){
+			$sql = "UPDATE `requests` SET `status`=1 WHERE reciever_id = '$user_id'";
+			$answer= $sqlObj->query($sql);
+			if ($answer) {
+				$success[0]=1;
+			}
+			else{;
+				$success[0]=0;				
+			}
+
+		}
+		elseif($tmp['status']!=1){
+			$sql = "INSERT INTO `requests`(`sender_id`, `reciever_id`, `status`) VALUES ('$user_id','$friend_id',2)";
+			$answer= $sqlObj->query($sql);
+			if ($answer) {
+				$success[0]=2;
+			}
+			else{
+				$success[0]=0;				
+			}			
+		}
+		echo json_encode($success);
+
+	}
 
 
 	function updatePicture($path){

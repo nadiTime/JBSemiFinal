@@ -18,15 +18,19 @@ $(document).ready(function(){
 				}
 				else if(request['status']==2){  //show accept button
 					$('#request_button').text('accept').addClass('accept');
+					$('#request_button').on('click',function(){
+						handleRequest(friendId);
+					});
 				}
 			}
 			else{      //+ add button
 				$('#request_button').text('add friend');
 				$('#request_button').on('click',function(){
-					$(this).text('request sent').addClass('sent');
+					handleRequest(friendId);					
 				});
 			}
-		})
+		});
+
 	}
 	else{ 									//load user page
 		$('#new_post').show();
@@ -112,6 +116,7 @@ function regDataAndPosts(data){
 	else{
 		$("#profile-picture img").attr("src",'api/pics/default.jpg');
 	}
+	$("#posts_view").empty();
 	for(var prop in data.posts){
 
 		var date = timeConverter(Math.round((new Date(Date.parse(data.posts[prop]['post_date']))).getTime() / 1000));
@@ -145,4 +150,24 @@ function timeConverter(UNIX_timestamp){
   }
   var time = date + ',' + month + ' ' + year + ' ' + hour + ':' + min;
   return time;
+}
+
+function handleRequest(friendId){
+	var success = false;
+	$.getJSON('api/operations.php',{'requestToHandle':friendId})
+	.done(function(data){
+		if(data[0]==1){
+			$('#request_button').hide();
+			$.getJSON("api/userDetails.php?friendId="+friendId)
+			.done(function(data){
+				regDataAndPosts(data);
+				secData(data);
+			})
+		}
+		else if(data[0]==2){
+			$('#request_button').text('request sent').addClass('sent');
+		}
+
+		$('#request_button').unbind();
+	});
 }

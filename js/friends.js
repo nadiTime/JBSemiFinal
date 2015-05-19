@@ -28,7 +28,6 @@ $(document).ready(function(){
 	});
 
 	$('.order').click(function(){
-		console.log('here');
 		var data = {origin:friendsOrigin};
 		data.search = search
 		data.order = $(this).val();
@@ -56,24 +55,9 @@ function extractData(data){
 	}
 	$('.userSelect').each(function(){
 		$(this).click(function(){
-			console.log("click");
 			sessionStorage.setItem('lastPage',$(this).attr("data-user-id"));
 			window.location.href = "index.php";
 		})
 	})
 
 }
-
-/*
-
-
-
-
-filter bar 
-	on	change listener send ajax to relevant php file and get right users
-		no results show message
-	if empty show all users
-	
-radio button ajax to relevant php with order ASC DESC
-
-*/
