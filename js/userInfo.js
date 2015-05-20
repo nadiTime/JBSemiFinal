@@ -90,6 +90,7 @@ $(document).ready(function(){
 			})
 		}
 		else{
+			$('#showSecretUpdate').hide();
 			$("#update-register").on('click',function(){   //REGISTER USER
 				var map = {};
 				$(".activeInput").each(function() {
@@ -99,9 +100,11 @@ $(document).ready(function(){
 				$.post( "api/operations.php", map)
 				  .done(function(data) {
 				  	var parsed_data = JSON.parse(data);
+				  	console.log(parsed_data);
 				    if(parsed_data.success){
 				    	var id = parsed_data.success;
 				    	sessionStorage.setItem("userId",id);
+				    	sessionStorage.setItem("lastPage",0);
 				    	alert('welcome '+map.user_nickname+'! you just registered');
 				    	window.location.href = "index.php";
 				    }

@@ -31,7 +31,9 @@
 
 			<div id="secret_data" class="4u$">
 				<p name = "user_secret_note"></p>
-				<img name = "user_secret_image" src=""/>
+				<div class="6u">
+					<img name = "user_secret_image" src=""/>
+				</div>
 			</div>
 		</div>
 		<div id="posts" class="row">

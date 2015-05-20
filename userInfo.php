@@ -1,9 +1,9 @@
- <?php
+<?php
 	require_once('templates/head.html');
 	$filename = basename(preg_replace('/\.php$/', '', __FILE__));
 	echo "<script src='js/".$filename.".js'></script>";
  	require_once('templates/header.html');
- ?>
+?>
  	<section>
  		<h1>userInfotmp</h1>
  		<div class="row ">

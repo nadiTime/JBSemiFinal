@@ -27,6 +27,10 @@ $(document).ready(function(){
 						handleRequest(friendId);
 					});
 				}
+				else if(request['status']==0){
+					$('#request_button').hide();
+					$('#decline_button').text('declined').show().addClass('sent');
+				}
 			}
 			else{      //+ add button
 				$('#request_button').text('add friend');
@@ -37,7 +41,8 @@ $(document).ready(function(){
 		});
 
 	}
-	else{ 									//load user page
+	else{
+		$('#decline_button').hide(); 									//load user page
 		$('#new_post').show();
 		$('#new_post button').click(function(){
 		var newPost = $('#new_post textarea').val();
@@ -132,6 +137,7 @@ function regDataAndPosts(data){
 
 function secData(data){
 	$('#request_button').hide();
+	$('#decline_button').hide();
 	if(data.secret){
 		$('#secret_data').show();
 		$("#secret_data p").text(data.secret.user_secret_note); 
