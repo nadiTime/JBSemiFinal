@@ -33,6 +33,7 @@ $(document).ready(function(){
 				}
 			}
 			else{      //+ add button
+				$('#decline_button').hide(); 	
 				$('#request_button').text('add friend');
 				$('#request_button').on('click',function(){
 					handleRequest(friendId);					
@@ -45,8 +46,9 @@ $(document).ready(function(){
 		$('#decline_button').hide(); 									//load user page
 		$('#new_post').show();
 		$('#new_post button').click(function(){
-		var newPost = $('#new_post textarea').val();
+		var newPost = $('#new_post textarea').val().replace(/\n/g, "<br/>");
 			if(newPost){
+				$('#new_post textarea').val('');
 				var time = timeConverter(Math.round((new Date()).getTime() / 1000));
 				$.post('api/operations.php',{post:newPost})
 				.done(function(){

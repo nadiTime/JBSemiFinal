@@ -9,10 +9,10 @@ session_start();
 		$sql = "SELECT `id`,`nickname` FROM `users` WHERE `email`='$email'";
 		$answer = $sqlObj->query($sql);								
 		$arr =[];
-		if($answer){
+		$arr['success'] =0;
+		if (mysqli_num_rows($answer) > 0){
 			$res = mysqli_fetch_assoc($answer);
 			$id = $res['id'];
-			
 
 			$sql = "SELECT `pass` FROM `passwords` WHERE `user_id`='$id'"; //check if the same passwords
 			$answer = $sqlObj->query($sql);	

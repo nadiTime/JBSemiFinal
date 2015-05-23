@@ -25,6 +25,7 @@ $(document).ready(function(){
 				 	.done(function(data){
 					  	var parsed_data = JSON.parse(data);
 					    if(parsed_data.success){
+					    	sessionStorage.setItem('lastPage',0);
 					    	alert('update success');
 					    	window.location.href = "index.php";
 					    }
@@ -70,6 +71,7 @@ $(document).ready(function(){
 			            if(typeof data.error === 'undefined')
 			            {
 			                // Success so call function to process the form
+			             	sessionStorage.setItem('lastPage',0);
 			             	alert('update success');
 					    	window.location.href = "index.php";	  
 			            }
@@ -158,3 +160,4 @@ function alphanumeric(alphane){
 	}
 	return true;
 }
+

@@ -86,6 +86,13 @@ button{
 	&:focus {outline:0;}
 
 }
+#logout{
+	width:auto;
+	float: right;
+	font-size: 16px;
+
+}
+
 .sent{
 	background-color:$header-color;
 	color:white;

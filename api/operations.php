@@ -65,6 +65,10 @@ session_start();
 		echo $success;
 	}
 
+	if(isset($_GET['logout'])){
+		session_unset();
+	}
+
 
 	
 
