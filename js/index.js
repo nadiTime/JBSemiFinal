@@ -50,10 +50,9 @@ $(document).ready(function(){
 			if(newPost){
 				$('#new_post textarea').val('');
 				var time = timeConverter(Math.round((new Date()).getTime() / 1000));
-				$.post('api/operations.php',{post:newPost})
-				.done(function(){
-					var post = $("<p class='user_post'>"+newPost+"<span class='post_date'>"+time+"</span>");
-					$("#posts_view").prepend(post);
+				$.getJSON('api/operations.php',{post:newPost})
+				.done(function(data){
+					putPosts(data);
 				})
 			}
 		});
@@ -128,14 +127,17 @@ function regDataAndPosts(data){
 	else{
 		$("#profile-picture img").attr("src",'api/pics/default.jpg');
 	}
+	putPosts(data.posts);
+	
+}
+function putPosts(posts){
 	$("#posts_view").empty();
-	for(var prop in data.posts){
-		var date = timeConverter(Math.round((new Date(Date.parse(data.posts[prop]['post_date']))).getTime() / 1000));
-		var post = $("<p class='user_post'>"+data.posts[prop]['post']+"<span class='post_date'>"+date+"</span>");
+	for(var prop in posts){
+		var date = timeConverter(Math.round((new Date(Date.parse(posts[prop]['post_date']))).getTime() / 1000));
+		var post = $("<p class='user_post'>"+posts[prop]['post']+"<span class='post_date'>"+date+"</span>");
 		$("#posts_view").append(post);
 	}
 }
-
 
 function secData(data){
 	$('#request_button').hide();

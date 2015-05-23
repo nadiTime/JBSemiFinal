@@ -39,12 +39,12 @@ session_start();
  			echo json_encode($validate);
  		}
  	}
- 	if(isset($_POST['post'])){
- 		$answer = insertNewPost($_POST['post']);
+ 	if(isset($_GET['post'])){
+ 		$answer = insertNewPost($_GET['post']);
 		if($answer){
 			$success = array('success' => 1);
 		}
-		echo json_encode($success);
+		echo selectUserPosts($_SESSION['id']);
  	}
  	
 

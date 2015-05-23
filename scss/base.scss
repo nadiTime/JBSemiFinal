@@ -46,10 +46,11 @@ nav{
 			a{
 				text-decoration: none;
 				color:#0F3D23;
-				font-size: 2em;
+				font-size: 1em;
 				margin-left: 1em;
 				&:hover{
 					text-decoration: underline;
+					font-weight: 700;
 				}
 			}
 		}
@@ -227,6 +228,7 @@ input[type=radio] + label:before {
    	top:0;
    	left:0;
 }
+
 #secretForm{
 	margin: 0 auto;
 	width:30em;
@@ -234,4 +236,8 @@ input[type=radio] + label:before {
 	background-color: #388E8E;
 	border-radius: 0.5em;
 	padding:1em 0em 2em 0em;
+}
+
+#placeToWritePosts{
+	height:8em;
 }

@@ -49,7 +49,6 @@ require_once('DB.class.php');
 	function insertNewPost($post){
 		$sqlObj = connect();
  		$userId = $_SESSION['id'];
- 		$post = $_POST['post'];
  		$sql="INSERT INTO `posts`(`user_id`, `post`) VALUES ('$userId','$post')";
 		$answer= $sqlObj->query($sql);
 		return $answer;
@@ -136,4 +135,22 @@ require_once('DB.class.php');
 			}			
 		}
 		return json_encode($success);
+	}
+
+	function selectUserPosts($id){
+		$sqlObj = connect();
+		$sql="SELECT `post` as post, `date` as post_date FROM `posts`
+			 WHERE user_id=$id ORDER BY post_date desc";
+			$answer= $sqlObj->query($sql);
+			if($answer){
+				$arr = [];
+				while($res = mysqli_fetch_assoc($answer)){
+					$arr[] =$res;
+				}
+				$array = $arr; 
+			}
+			else{
+				$success = false;
+			}
+			return json_encode($array);
 	}
