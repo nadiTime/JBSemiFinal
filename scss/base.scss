@@ -8,11 +8,28 @@ html{
 	font-family: 'Open Sans', sans-serif;
 }
 header{
-	text-align: center;
-	padding: 0.2em;
-	height: auto;
-	font-size: 3em;	
+	text-align: left;
+	height: 3em;
+	font-size: 1em;	
 	background-color: $header-color;
+	h1{
+		margin:0;
+		display: inline-block;
+		padding-left: 0.5em;
+	}
+
+	.fa-diamond{
+		position: relative;
+		top:-0.6em;
+	}
+	#logout{
+		width:auto;
+		float: right;
+		font-size: 16px;
+		&:hover{
+			background-color: $nav-color;
+		}
+	}
 }
 
 nav{
@@ -86,12 +103,7 @@ button{
 	&:focus {outline:0;}
 
 }
-#logout{
-	width:auto;
-	float: right;
-	font-size: 16px;
 
-}
 
 .sent{
 	background-color:$header-color;
